@@ -1,0 +1,106 @@
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+@keyframes pulseFade {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.92); }
+}
+@keyframes loaderSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+@keyframes scrollLine {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes rippleAnim {
+  to { transform: scale(3); opacity: 0; }
+}
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL
+   ========================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal="fade"] { transform: none; }
+[data-reveal="scale"] { transform: scale(0.92); }
+[data-reveal="scale"].is-revealed { transform: scale(1); }
+[data-reveal="left"] { transform: translateX(-40px); }
+[data-reveal="left"].is-revealed { transform: translateX(0); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal="right"].is-revealed { transform: translateX(0); }
+
+/* stagger via inline --delay custom property, set by JS or utility classes */
+[data-reveal] { transition-delay: var(--delay, 0s); }
+
+/* ==========================================================================
+   HOVER LIFT (generic utility)
+   ========================================================================== */
+.hover-lift { transition: transform var(--dur-med) var(--ease-luxury), box-shadow var(--dur-med) var(--ease-luxury); }
+.hover-lift:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+/* ==========================================================================
+   TEXT REVEAL (mask lines)
+   ========================================================================== */
+.text-reveal-line { overflow: hidden; display: block; }
+.text-reveal-line span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease-luxury);
+}
+.text-reveal-line.is-revealed span { transform: translateY(0); }
+
+/* ==========================================================================
+   FLOATING SHAPES / GOLD BORDER GLOW
+   ========================================================================== */
+.floating-shape { animation: floatShape 7s ease-in-out infinite; }
+
+.border-glow {
+  position: relative;
+}
+.border-glow::after {
+  content: "";
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-gold);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--dur-med);
+}
+.border-glow:hover::after { opacity: 1; }
+
+.animated-gradient-text {
+  background: var(--gradient-gold);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 5s ease infinite;
+}

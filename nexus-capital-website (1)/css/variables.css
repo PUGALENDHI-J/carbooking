@@ -1,0 +1,87 @@
+/* ==========================================================================
+   NEXUS CAPITAL — DESIGN TOKENS (Clean White Edition)
+   ========================================================================== */
+
+:root {
+  /* ---- Color: Core ----
+     60% warm white/cream, 30% charcoal graphite, 10% gold/terracotta/forest accent (60-30-10 rule)
+     Variable names kept stable for backward-compatibility with existing rules;
+     values remapped to the new luxury palette. */
+  --color-burgundy:         #A9683F;   /* was dusty burgundy → now warm copper accent */
+  --color-wine:             #8C5A3C;   /* secondary copper/terracotta accent */
+  --color-maroon:           #F5F1E6;   /* soft beige panel background */
+  --color-primary:          #2A2723;   /* was deep burgundy → now luxury graphite/charcoal */
+  --color-primary-deep:     #17150F;   /* near-black warm charcoal */
+  --color-terracotta:       #A85C32;   /* new: 10% accent, used sparingly */
+  --color-forest:           #2F4A3C;   /* new: 10% accent, used very sparingly */
+  --color-gold:             #B08D57;
+  --color-gold-light:       #D9BC87;
+  --color-gold-pale:        #EFE3C9;
+  --color-white:            #FFFFFF;
+  --color-cream:            #FAF8F4;
+  --color-off-white:        #F3EFE6;
+  --color-text:             #23211D;
+  --color-text-muted:       #6B655C;
+  --color-text-dark:        #23211D;
+  --color-text-muted-dark:  #6B655C;
+  --color-border:           #E4DDD0;
+
+  /* ---- Gradients ---- */
+  --gradient-gold: linear-gradient(120deg, #8F6B37 0%, #C8A567 40%, #EAD9AE 60%, #B08D57 100%);
+  --gradient-burgundy: linear-gradient(160deg, #2A2723 0%, #17150F 100%);
+  --gradient-hero-overlay: linear-gradient(180deg, rgba(18,16,12,0.32) 0%, rgba(16,14,11,0.55) 45%, rgba(12,10,8,0.9) 100%);
+  --gradient-text-gold: linear-gradient(120deg, #D9BC87 0%, #B08D57 50%, #D9BC87 100%);
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.18);
+
+  /* ---- Typography ----
+     Headings: Playfair Display · Body/UI: Inter */
+  --font-heading: 'Playfair Display', serif;
+  --font-subheading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-stat: 'Playfair Display', serif;
+
+  --fs-hero: clamp(2.9rem, 6.4vw, 5.25rem);
+  --fs-h1: clamp(2.2rem, 3.8vw, 3.25rem);
+  --fs-h2: clamp(2rem, 3.2vw, 2.85rem);
+  --fs-h3: clamp(1.05rem, 1.3vw, 1.2rem);
+  --fs-body: 1rem;
+  --fs-small: 0.85rem;
+  --fs-stat: clamp(1.9rem, 3.4vw, 3rem);
+
+  /* ---- Spacing scale ---- */
+  --space-3xs: 0.15rem;
+  --space-2xs: 0.3rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.7rem;
+  --space-md: 1rem;
+  --space-lg: 1.75rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6.5rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 3vw, 2rem);
+  --radius-sm: 8px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+
+  /* ---- Motion ---- */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.25s;
+  --dur-med: 0.5s;
+  --dur-slow: 0.9s;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 2px 6px rgba(36, 20, 14, 0.05);
+  --shadow-md: 0 8px 24px rgba(36, 20, 14, 0.08);
+  --shadow-lg: 0 20px 48px rgba(36, 20, 14, 0.14);
+  --shadow-gold: 0 10px 28px rgba(188, 149, 86, 0.28);
+
+  /* ---- Z-index ---- */
+  --z-nav: 500;
+  --z-loader: 900;
+  --z-float: 400;
+  --z-modal: 800;
+}

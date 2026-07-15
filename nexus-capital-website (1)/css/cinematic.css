@@ -1,0 +1,265 @@
+/* ==========================================================================
+   CINEMATIC UPGRADE LAYER
+   Additive on top of existing styles — does not replace any existing rules.
+   Adds: pinned multi-scene hero, split-text reveal, image mask reveal,
+   magnetic buttons, refined glass nav, richer card depth.
+   ========================================================================== */
+
+/* ---- Hero is now compact ---- */
+.hero[data-cinematic] {
+  padding: 0;
+}
+.hero[data-cinematic] .hero__stage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.hero[data-cinematic] .hero__bg {
+  will-change: transform;
+}
+
+/* Scene 2 — stat callout removed */
+.hero__scene-stat,
+.hero__scene-dots { display: none; }
+
+/* ==========================================================================
+   SPLIT TEXT REVEAL (JS-driven — wraps words/chars in spans)
+   ========================================================================== */
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+.split-word {
+  display: inline-block;
+  transform: translateY(115%) rotate(2deg);
+  opacity: 0;
+  transition: transform 0.85s var(--ease-luxury), opacity 0.7s ease;
+  transition-delay: var(--word-delay, 0s);
+  will-change: transform, opacity;
+}
+.split-ready.is-revealed .split-word {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   IMAGE MASK REVEAL (removed smoke effect)
+   ========================================================================== */
+.mask-reveal {
+  position: relative;
+  overflow: hidden;
+}
+.mask-reveal img {
+  transition: transform 1.4s var(--ease-luxury);
+}
+.mask-reveal.is-revealed img {
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   MAGNETIC BUTTONS
+   ========================================================================== */
+.magnetic {
+  transition: transform 0.35s var(--ease-luxury), box-shadow var(--dur-fast);
+}
+.magnetic__label { display: inline-block; will-change: transform; }
+
+/* ==========================================================================
+   CINEMATIC NAVBAR OVERRIDES
+   ========================================================================== */
+.navbar__links a::after {
+  height: 1.5px;
+  background: var(--gradient-gold);
+}
+
+/* ==========================================================================
+   RICHER CARD DEPTH (layered on existing cards)
+   ========================================================================== */
+/* Cinematic quote / vision statement band, reused by [data-cinematic-quote] */
+.cinematic-quote {
+  padding-block: var(--space-2xl);
+  text-align: center;
+  background: var(--color-maroon);
+  position: relative;
+  overflow: hidden;
+}
+.cinematic-quote__text {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+  color: var(--color-text);
+  max-width: 900px;
+  margin-inline: auto;
+  line-height: 1.4;
+}
+.cinematic-quote__text .accent { color: var(--color-gold); }
+
+/* ==========================================================================
+   SERVICES SPLIT — fixed right heading, horiz-scroll left cards
+   ========================================================================== */
+.services-split {
+  position: relative;
+  background: var(--color-white);
+}
+
+.services-split__inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.services-split__left {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.services-split__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: 0 var(--space-xl) 0 var(--space-2xl);
+  will-change: transform;
+}
+
+.services-split__cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-lg);
+}
+
+.services-split__cards .resource-card {
+  min-width: 280px;
+  max-width: 320px;
+  width: 24vw;
+  flex-shrink: 0;
+}
+
+.services-split__end {
+  flex-shrink: 0;
+  padding-left: var(--space-sm);
+}
+
+.services-split__right {
+  flex: 0 0 40%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-2xl);
+  background: var(--color-maroon);
+}
+
+.services-split__right .eyebrow {
+  justify-content: flex-start;
+}
+
+.services-split__right h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: var(--space-md);
+}
+
+.services-split__right p {
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* Parallax head */
+[data-parallax-head] {
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   CHAR REVEAL — staggered character animation
+   ========================================================================== */
+[data-char-reveal] {
+  letter-spacing: 0.2em;
+}
+
+.char-ready {
+  display: inline-block;
+}
+
+.char-unit {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-delay: var(--char-delay, 0s);
+}
+
+.is-revealed .char-unit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   STEP REVEAL — staggered card entrance for services-split__cards
+   ========================================================================== */
+[data-step-reveal].services-split__cards > .resource-card {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-step-reveal].services-split__cards.is-revealed > .resource-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-step-reveal].services-split__cards > .resource-card:nth-child(1) { transition-delay: 0s; }
+[data-step-reveal].services-split__cards > .resource-card:nth-child(2) { transition-delay: 0.08s; }
+[data-step-reveal].services-split__cards > .resource-card:nth-child(3) { transition-delay: 0.16s; }
+[data-step-reveal].services-split__cards > .resource-card:nth-child(4) { transition-delay: 0.24s; }
+[data-step-reveal].services-split__cards > .resource-card:nth-child(5) { transition-delay: 0.32s; }
+[data-step-reveal].services-split__cards > .resource-card:nth-child(6) { transition-delay: 0.4s; }
+
+/* ---- reduced motion respect ---- */
+@media (prefers-reduced-motion: reduce) {
+  .hero[data-cinematic] { height: auto; min-height: 100vh; }
+  .hero[data-cinematic] .hero__stage { position: relative; height: auto; }
+  .hero__scene-stat { display: none; }
+  .split-word { transform: none; opacity: 1; transition: none; }
+  .mask-reveal img { transform: none; }
+  .services-split__inner {
+    position: relative;
+    height: auto;
+    flex-direction: column;
+  }
+  .services-split__left {
+    overflow: visible;
+    display: block;
+    padding: var(--space-lg) var(--space-md);
+  }
+  .services-split__track {
+    flex-wrap: wrap;
+    padding: 0;
+    transform: none !important;
+  }
+  .services-split__cards {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  .services-split__cards .resource-card {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
+  .services-split__end {
+    width: 100%;
+    padding: var(--space-md) 0 0;
+    text-align: center;
+  }
+}
